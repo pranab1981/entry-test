@@ -5,3 +5,7 @@ The initial implementation of the `LoginForm` component did not automatically re
 
 ### Solution
 To fix this, an `onSubmit` handler (`handleFormSubmission`) was added to the `<form>` element in `LoginForm`. This handler calls `e.preventDefault()` to stop the default browser submission and then invokes the `onLogin` prop, passing the form data to the parent `App` component for state management and conditional rendering of the welcome page.
+
+
+## AI Assistance (Optional)
+During debugging, an AI language model helped confirm the role of `onSubmit` and `e.preventDefault()` in preventing default form submission and enabling React's state management for redirection.

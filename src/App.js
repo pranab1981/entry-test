@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
-import './App.css';
-import LoginForm from './components/LoginForm';
-import Welcome from './components/Welcome';
+import React, { useState } from "react";
+import "./App.css";
+import LoginForm from "./components/LoginForm";
+import Welcome from "./components/Welcome";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState("");
 
   const handleLogin = (formData) => {
-    // In a real app, you would validate credentials here
-    setIsLoggedIn(true);
-    setUserName(formData.name);
+    if (
+      formData.name === "zipboard_test" &&
+      formData.password === "ZipBoard@2025"
+    ) {
+      setIsLoggedIn(true);
+      setUserName(formData.name);
+      return true;
+    }
+    return false;
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setUserName('');
+    setUserName("");
   };
 
   return (

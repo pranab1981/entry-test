@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .login-form-container {
   display: flex;
   justify-content: center;
@@ -13,6 +17,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 400px;
+  margin: 1rem;
 }
 
 .login-form h2 {
@@ -37,6 +42,7 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 1rem;
+  box-sizing: border-box;
 }
 
 .form-group input:focus {
@@ -64,4 +70,53 @@
 .login-button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-} 
+}
+
+.error-message {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional: Add hover effect */
+.error-message:hover {
+  background-color: #f5c6cb;
+  transition: background-color 0.2s ease;
+}
+
+.test-credentials {
+  background: #e8f4ff;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  border: 1px solid #b3d7ff;
+  word-break: break-word;
+}
+
+.test-credentials p {
+  margin: 0 0 0.5rem 0;
+  color: #004085;
+  font-weight: bold;
+}
+
+.test-credentials code {
+  display: block;
+  color: #004085;
+  font-family: monospace;
+}

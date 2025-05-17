@@ -1,26 +1,52 @@
-import React, { useState } from 'react';
-import './LoginForm.css';
+import React, { useState } from "react";
+import "./LoginForm.css";
 
 function LoginForm({ onLogin }) {
   const [formData, setFormData] = useState({
-    name: '',
-    password: ''
+    name: "",
+    password: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
+    setErrorMessage("");
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const success = await onLogin(formData);
+    if (!success) {
+      setErrorMessage("Invalid username or password");
+    }
   };
 
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
+
+        {/* Test Credentials Info */}
+        <div className="test-credentials">
+          <p>Test Credentials:</p>
+          <code>
+            Username: zipboard_test
+            <br />
+            Password: ZipBoard@2025
+          </code>
+        </div>
+
+        {errorMessage && (
+          <div className="error-message" role="alert">
+            {errorMessage}
+          </div>
+        )}
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name">Username:</label>
           <input
             type="text"
             id="name"
@@ -28,6 +54,7 @@ function LoginForm({ onLogin }) {
             value={formData.name}
             onChange={handleChange}
             required
+            aria-required="true"
           />
         </div>
         <div className="form-group">
@@ -39,6 +66,7 @@ function LoginForm({ onLogin }) {
             value={formData.password}
             onChange={handleChange}
             required
+            aria-required="true"
           />
         </div>
         <button type="submit" className="login-button">
@@ -49,4 +77,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm; 
+export default LoginForm;

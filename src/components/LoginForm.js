@@ -15,9 +15,17 @@ function LoginForm({ onLogin }) {
     }));
   };
 
+  // Add handelSubmit function that triggers on form submit 
+  const handleSubmit = (e) => {
+    // prevent the page from reload
+    e.preventDefault();
+    // Use onLogin prop to pass the formData 
+    onLogin(formData)
+  }
+
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form onSubmit={handleSubmit} className="login-form">
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

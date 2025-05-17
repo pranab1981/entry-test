@@ -1,9 +1,13 @@
-Bug Fix Documentation
-Issue Description
+# BUG FIXING DOC
+
+## Issue Description
+
 The login form was not redirecting the user after a successful login. Although the form allowed input and submission, the app did not navigate to the welcome page as expected. This was because the login logic only updated state without triggering a navigation or redirect.
 
-Solution
+
+## Solution
 The issue was resolved by:
+```
 
 Integrating react-router-dom for client-side routing.
 
@@ -13,9 +17,10 @@ Implementation Details
 The fix involved:
 
 Installing react-router-dom and setting up routing in App.js.
+```
 
-Updating handleLogin in App.js:
-
+**Updating handleLogin in App.js:**
+```
 js
 Copy
 Edit
@@ -32,9 +37,11 @@ navigate('/welcome'); // Redirect after login
 
 // ...
 }
+```
 Adding route definitions to render the LoginForm at / and Welcome at /welcome.
 
-Testing
+**Testing**
+
 The fix was verified using Cypress end-to-end tests which confirmed:
 
 The login form renders correctly.

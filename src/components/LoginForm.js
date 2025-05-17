@@ -15,9 +15,14 @@ function LoginForm({ onLogin }) {
     }));
   };
 
+  const handleSubmit= (e)=>{
+    e.preventDefault();
+    onLogin(formData); // this triggers login and updates state in App
+  };
+
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

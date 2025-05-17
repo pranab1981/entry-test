@@ -3,13 +3,13 @@ describe('Login Component', () => {
     cy.visit('http://localhost:3000');
   });
 
-  it('should render the login page', () => {
+  it('make sure that login page exits', () => {
     cy.contains('Login').should('exist');
     cy.get('input[name="name"]').should('exist');
     cy.get('input[name="password"]').should('exist');
   });
 
-  it('should validate empty fields submission', () => {
+  it('cheking empty submissions.', () => {
     cy.get('button[type="submit"]').click();
     cy.get('form.login-form').should('exist');
     cy.contains('Welcome').should('not.exist');
@@ -22,7 +22,7 @@ describe('Login Component', () => {
   ];
 
   users.forEach(({ name, password }) => {
-    it(`should log in successfully with user: ${name}`, () => {
+    it(`must login for all the users: ${name}`, () => {
       cy.get('input[name="name"]').type(name);
       cy.get('input[name="password"]').type(password);
       cy.get('button[type="submit"]').click();
@@ -33,7 +33,7 @@ describe('Login Component', () => {
     });
   });
 
-  it('should logout successfully and return to login page', () => {
+  it('checking sucessfull logout and return to the login page', () => {
     cy.get('input[name="name"]').type('Akhil');
     cy.get('input[name="password"]').type('pass123');
     cy.get('button[type="submit"]').click();

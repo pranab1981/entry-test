@@ -15,7 +15,8 @@ function LoginForm({ onLogin }) {
     }));
   };
 
-  const handleFormSubmission = () => {
+  const handleFormSubmission = (e) => {
+    e.preventDefault()
     onLogin(formData);
   };
 

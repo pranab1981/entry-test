@@ -6,6 +6,19 @@ function LoginForm({ onLogin }) {
     name: '',
     password: ''
   });
+  const [error, setError] = useState(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (formData.name.trim() === "" || formData.password.trim() === "") {
+      setError("Name and Password cannot be empty");
+      return;
+    }
+
+
+    onLogin(formData);
+  }
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,8 +30,14 @@ function LoginForm({ onLogin }) {
 
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
+        {error && (
+          <div className='error-container'>
+            <p className='error-message'>{error}</p>
+            <button className='error-button' onClick={() => setError(null)}>X</button>
+          </div>
+        )}
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
@@ -27,7 +46,6 @@ function LoginForm({ onLogin }) {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            required
           />
         </div>
         <div className="form-group">
@@ -38,7 +56,6 @@ function LoginForm({ onLogin }) {
             name="password"
             value={formData.password}
             onChange={handleChange}
-            required
           />
         </div>
         <button type="submit" className="login-button">

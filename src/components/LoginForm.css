@@ -28,6 +28,7 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
+  text-align: start;
   color: #555;
 }
 
@@ -64,4 +65,25 @@
 .login-button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-} 
+}
+
+.error-container {
+  color: white;
+  background: #f00;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding: .8rem;
+  padding-block: .5rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.error-container button {
+  background: none;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
-import './LoginForm.css';
+import React, { useState } from "react";
+import "./LoginForm.css";
 
 function LoginForm({ onLogin }) {
   const [formData, setFormData] = useState({
-    name: '',
-    password: ''
+    name: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -41,7 +41,14 @@ function LoginForm({ onLogin }) {
             required
           />
         </div>
-        <button type="submit" className="login-button">
+        <button
+          type="submit"
+          className="login-button"
+          onClick={(e) => {
+            e.preventDefault();
+            onLogin(formData);
+          }}
+        >
           Login
         </button>
       </form>
@@ -49,4 +56,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm; 
+export default LoginForm;

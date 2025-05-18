@@ -1,98 +1,49 @@
-# zipBoard Junior Position Test Project
+## Task Overview
+The task was to write Cypress test cases for the `LoginForm` component to ensure it works as expected. Additionally, I needed to fix any issues in the application that prevented the tests from passing and document the changes.
 
-This is a test repository for the zipBoard junior position application process. This project demonstrates a simple React application with a login form and Cypress testing setup.
+---
 
-## Important Note
+## Changes and Fixes
 
-This repository is for testing purposes only. Please fork this repository to your own account and do not modify this original repository. All your work should be done in your forked version.
+### 1. **Add onSubmit handler to LoginForm component**
+   - **Issue**: The page was refreshing on form submission and not properly handled for `onSubmit` event, preventing the `<Welcome>` component from rendering.
+   - **Fix**: Added `e.preventDefault()` in the `handleSubmit` function of the `LoginForm` component to prevent the default form submission behavior and attached `handleSubmit` funtion to `onSubmit` form event.
+   - **File Modified**: `src/components/LoginForm.js`
+   - **Code Snippet**:
+     ```javascript
+     const handleSubmit = (e) => {
+       e.preventDefault(); // Prevent page refresh
+       onLogin(formData);
+     };
+     
+     ...
+     
+     {/* Attach handleSubmit to form */}
+     <form className="login-form" onSubmit={handleSubmit}>
+     ```
 
-## Required Technologies
+### 2. **Cypress Test Cases**
+   - Added comprehensive test cases to verify the functionality of the `LoginForm` component.
+   - **File Modified**: `cypress/e2e/login.cy.js`
+   - **New Test Cases**:
+      1. **Display Login Form**:
+         - Verifies that the login form and its fields are visible on the page.
+      
+      2. **Validation Errors for Empty Fields**:
+         - Ensures that the form enforces required fields and displays validation errors.
+      
+      3. **Successful Login**:
+         - Simulates a successful login and verifies that the `<Welcome>` component is displayed.
+---
 
-To run this project locally, you need to have the following installed:
+## Screenshots of AI Tool Usage
+**Used GitHub Copilot to identify the bug.** (Query and Response on right side)
 
-- Node.js (version 18 or higher)
-- npm (comes with Node.js)
-- Git
+![Screenshot From 2025-05-18 13-07-48](https://github.com/user-attachments/assets/b52487a6-c128-4096-ab7f-a3a8004015f8)
+---
 
-## Getting Started
+**Used GitHub Copilot to write various Cypress Test Cases.** (Query and Response on right side)
 
-1. Fork this repository to your own account
-2. Clone your forked repository:
-   ```bash
-   git clone <your-forked-repo-url>
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
-   The application will be available at [http://localhost:3000](http://localhost:3000)
+![Screenshot From 2025-05-18 14-04-15](https://github.com/user-attachments/assets/0df2ff9a-a672-4b46-a02c-5ad07023761a)
 
-## Testing with Cypress
 
-This project uses Cypress for end-to-end testing. To run the tests:
-
-1. Make sure the development server is running (`npm start`)
-2. In a new terminal, you can run Cypress in two ways:
-
-   ### Open Cypress Test Runner (Interactive Mode)
-   ```bash
-   npm run cypress:open
-   ```
-   This will open the Cypress Test Runner UI where you can:
-   - Choose your preferred browser
-   - See all test files
-   - Run tests interactively
-   - Watch tests run in real-time
-
-   ### Run Tests in Headless Mode
-   ```bash
-   npm run cypress:run
-   ```
-   This will run all tests in the terminal without opening the UI.
-
-   ### Run Tests with Dev Server
-   ```bash
-   npm run test:e2e
-   ```
-   This command will:
-   1. Start the development server
-   2. Wait for it to be available
-   3. Run all Cypress tests
-   4. Shut down the server when done
-
-## Project Structure
-
-```
-├── src/
-│   ├── components/
-│   │   ├── LoginForm.js
-│   │   ├── LoginForm.css
-│   │   ├── Welcome.js
-│   │   └── Welcome.css
-│   ├── App.js
-│   └── App.css
-├── cypress/
-│   ├── e2e/
-│   │   └── login.cy.js
-│   └── support/
-│       ├── commands.js
-│       └── e2e.js
-└── package.json
-```
-
-## Available Scripts
-
-- `npm start` - Runs the app in development mode
-- `npm test` - Runs the React testing suite
-- `npm run build` - Builds the app for production
-- `npm run cypress:open` - Opens Cypress Test Runner
-- `npm run cypress:run` - Runs Cypress tests in headless mode
-- `npm run test:e2e` - Runs Cypress tests with the dev server
-
-## License
-
-This project is for testing purposes only and is not licensed for public use.

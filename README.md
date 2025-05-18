@@ -1,98 +1,39 @@
-# zipBoard Junior Position Test Project
+# 🧪 React Login App: Cypress Test + Bug Fix
 
-This is a test repository for the zipBoard junior position application process. This project demonstrates a simple React application with a login form and Cypress testing setup.
+This project is a simple login application built with React. It includes a basic login form and a welcome screen. The project also includes Cypress end-to-end (E2E) tests to ensure that the login flow works as expected.
 
-## Important Note
+---
 
-This repository is for testing purposes only. Please fork this repository to your own account and do not modify this original repository. All your work should be done in your forked version.
+## ✅ Bug Fix: Login Redirect Not Working
 
-## Required Technologies
+### 🔍 Problem
 
-To run this project locally, you need to have the following installed:
+The login form did not redirect the user to the welcome screen after submitting valid input. Clicking "Login" did not cause any state change in the app.
 
-- Node.js (version 18 or higher)
-- npm (comes with Node.js)
-- Git
+### 🛠️ Fix
 
-## Getting Started
+The form inside `LoginForm.jsx` was missing an `onSubmit` handler. This caused the `onLogin` callback (passed from the parent `App` component) to never execute.  
+**Solution:** Added a `handleSubmit` function with `e.preventDefault()` to stop the form’s default submission behavior (page reload). This allows the `onLogin(formData)` function to execute properly, which updates the `isLoggedIn` state in `App.js` and conditionally renders the welcome screen.
 
-1. Fork this repository to your own account
-2. Clone your forked repository:
-   ```bash
-   git clone <your-forked-repo-url>
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
-   The application will be available at [http://localhost:3000](http://localhost:3000)
+---
 
-## Testing with Cypress
+## 🧪 Cypress Tests
 
-This project uses Cypress for end-to-end testing. To run the tests:
+Cypress test file is located at:
+cypress/e2e/login.cy.js
 
-1. Make sure the development server is running (`npm start`)
-2. In a new terminal, you can run Cypress in two ways:
+## Cypress Test Overview
 
-   ### Open Cypress Test Runner (Interactive Mode)
-   ```bash
-   npm run cypress:open
-   ```
-   This will open the Cypress Test Runner UI where you can:
-   - Choose your preferred browser
-   - See all test files
-   - Run tests interactively
-   - Watch tests run in real-time
+Cypress tests were written to cover the end-to-end login flow, including:
 
-   ### Run Tests in Headless Mode
-   ```bash
-   npm run cypress:run
-   ```
-   This will run all tests in the terminal without opening the UI.
+- Verifying that the login form renders correctly with empty inputs initially.
+- Simulating user input into the name and password fields.
+- Submitting the form and checking that the welcome screen appears with the correct user name.
+- Testing the logout flow to ensure the app returns to the login form.
 
-   ### Run Tests with Dev Server
-   ```bash
-   npm run test:e2e
-   ```
-   This command will:
-   1. Start the development server
-   2. Wait for it to be available
-   3. Run all Cypress tests
-   4. Shut down the server when done
+## 🤖 AI Tool Usage
 
-## Project Structure
+I used **ChatGPT** to assist in generating the Cypress test cases. Specifically:
 
-```
-├── src/
-│   ├── components/
-│   │   ├── LoginForm.js
-│   │   ├── LoginForm.css
-│   │   ├── Welcome.js
-│   │   └── Welcome.css
-│   ├── App.js
-│   └── App.css
-├── cypress/
-│   ├── e2e/
-│   │   └── login.cy.js
-│   └── support/
-│       ├── commands.js
-│       └── e2e.js
-└── package.json
-```
-
-## Available Scripts
-
-- `npm start` - Runs the app in development mode
-- `npm test` - Runs the React testing suite
-- `npm run build` - Builds the app for production
-- `npm run cypress:open` - Opens Cypress Test Runner
-- `npm run cypress:run` - Runs Cypress tests in headless mode
-- `npm run test:e2e` - Runs Cypress tests with the dev server
-
-## License
-
-This project is for testing purposes only and is not licensed for public use.
+- I provided all three components: `LoginForm.jsx`, `Welcome.jsx`, and `App.js`.
+- I asked ChatGPT to create **end-to-end (E2E) test scripts** that cover the login, welcome screen, and logout flow.

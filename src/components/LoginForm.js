@@ -17,7 +17,7 @@ function LoginForm({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onLogin(formData.name); // or however you’re calling it
+    onLogin(formData); // or however you’re calling it
   };
 
   return (

@@ -15,12 +15,18 @@ function LoginForm({ onLogin }) {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(formData);
+  }
+
+
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
             type="text"
             id="name"
@@ -31,7 +37,7 @@ function LoginForm({ onLogin }) {
           />
         </div>
         <div className="form-group">
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"

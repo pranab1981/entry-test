@@ -9,17 +9,36 @@
 // ***********************************************
 //
 //
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... }) 
+// ✅ Parent Command
+Cypress.Commands.add('login', (name, password) => {
+  cy.visit('/');
+  cy.get('input[name="name"]').type(name);
+  cy.get('input[name="password"]').type(password);
+  cy.get('button[type="submit"]').click();
+});
+
+Cypress.Commands.add('logout', () => {
+  cy.contains('Logout').click();
+});
+
+// ✅ Child Command
+Cypress.Commands.add('highlight', { prevSubject: 'element' }, (subject) => {
+  cy.wrap(subject).then($el => {
+    $el.css('border', '2px solid red');
+  });
+});
+
+// ✅ Dual Command
+Cypress.Commands.add('flash', { prevSubject: 'optional' }, (subject) => {
+  const el = subject ? cy.wrap(subject) : cy.get('body');
+  el.then($el => {
+    $el.css('background-color', 'yellow');
+    setTimeout(() => $el.css('background-color', ''), 500);
+  });
+});
+
+// ✅ Overwrite Command
+Cypress.Commands.overwrite('type', (originalFn, subject, string, options) => {
+  console.log(`Typing: ${string}`);
+  return originalFn(subject, string, options);
+});

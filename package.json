@@ -40,8 +40,13 @@
     ]
   },
   "devDependencies": {
+    "@cypress/webpack-dev-server": "^4.1.0",
     "@testing-library/cypress": "^10.0.3",
+    "css-loader": "^7.1.2",
     "cypress": "^14.3.3",
-    "start-server-and-test": "^2.0.12"
+    "eslint-plugin-cypress": "^2.12.1",
+    "start-server-and-test": "^2.0.12",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.99.8"
   }
 }

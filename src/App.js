@@ -16,7 +16,7 @@ function App() {
 
     // Explanation - Redirecting was not working because there was no setup of react router and 
     // only conditional rendering was taking place. So i added navigate which is initialised using useNavigate
-    // hook of react-router-dom. Rest implementation is below in App function.
+    // hook of react-router-dom.
 
     navigate("/Welcome")
   };

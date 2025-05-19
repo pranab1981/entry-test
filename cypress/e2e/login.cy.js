@@ -2,7 +2,10 @@ describe('Login Component', () => {
     it("first login and redirect to welcome page", () => {
         cy.visit('http://localhost:3000');
 
-        // FIll login form
+        // Check that login form is visible
+        cy.get('form.login-form').should('be.visible');
+
+        // Fill login form
         cy.get('input[name="name"]').type('sampleuser');
         cy.get('input[name="password"]').type('sampleuser123');
 
@@ -13,5 +16,11 @@ describe('Login Component', () => {
         cy.url().should('include', '/welcome');
 
         cy.contains("Welcome, sampleuser!").should('be.visible');
+
+
+        cy.contains('Logout').click();
+
+
+        cy.get('form.login-form').should('be.visible');
     })
 }) 

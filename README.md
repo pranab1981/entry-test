@@ -23,7 +23,8 @@ I modified `src/components/LoginForm.js` to:
 ![Login Form Before Fix](media/Screenshot%202025-05-19%20203309.png)
 
 The video below demonstrates the fixed login functionality:
-[![Fixed Login Demo](media/demo_fixed_error.mp4)](media/demo_fixed_error.mp4)
+
+https://github.com/user-attachments/assets/c88f44fe-d04d-4786-b648-52680efd2720
 
 ## Cypress Testing Implementation
 
@@ -55,7 +56,8 @@ npm run test:e2e        # Runs tests with dev server
 ![Cypress Test Results](media/Screenshot%202025-05-19%20204045.png)
 
 The video below shows the Cypress tests in action:
-[![Cypress Testing Demo](media/cypress_testing.mp4)](media/cypress_testing.mp4)
+
+https://github.com/user-attachments/assets/62692b52-3a20-4af1-9700-ac622267b834
 
 ## Project Setup
 

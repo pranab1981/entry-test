@@ -36,6 +36,13 @@ describe('Login Component', () => {
         // Check redirect
         cy.url().should('include', '/welcome');
         cy.contains('Welcome, testuser!');
+
+        // Logout
+        cy.get('.logout-button').click();
+        
+        // Verify back to login
+        cy.url().should('not.include', '/welcome');
+        cy.get('.login-form').should('exist');
     });
 
 }) 

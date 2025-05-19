@@ -1,98 +1,70 @@
-# zipBoard Junior Position Test Project
+# Debugging & Testing the Login Component
 
-This is a test repository for the zipBoard junior position application process. This project demonstrates a simple React application with a login form and Cypress testing setup.
+## 🐛 Discovering the Bug
 
-## Important Note
+After spending some time going through the component, I realized something important was missing — the form wasn’t actually listening for the `onSubmit` event. That meant that even though the `onLogin` prop was passed in (which handles redirection), it was never getting called!
 
-This repository is for testing purposes only. Please fork this repository to your own account and do not modify this original repository. All your work should be done in your forked version.
+To fix this, I added a dedicated submit handler function to the component that would invoke `onLogin` when the form was submitted.
 
-## Required Technologies
+This small oversight reminded me how easy it is to forget glue code that connects UI behavior with actual logic.
 
-To run this project locally, you need to have the following installed:
+## 🤖 How ChatGPT Helped
 
-- Node.js (version 18 or higher)
-- npm (comes with Node.js)
-- Git
+Once I got the component working, I turned my attention back to the test suite. I had written a basic version of it, but I wanted to make sure it followed best practices in terms of readability, structure, and scalability.
 
-## Getting Started
+I pasted in the raw test file I had written, and ChatGPT returned a much cleaner, scalable version of the test suite.
 
-1. Fork this repository to your own account
-2. Clone your forked repository:
-   ```bash
-   git clone <your-forked-repo-url>
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
-   The application will be available at [http://localhost:3000](http://localhost:3000)
+---
+prompt Used: Please optimize, organize, and structure the following Cypress test code for a React component. Use best practices for readability, maintainability, and scalability. Group related tests properly, reduce redundancy, and improve naming conventions where appropriate. Here's the code:
 
-## Testing with Cypress
+---
 
-This project uses Cypress for end-to-end testing. To run the tests:
+## ✅ Final Cypress Test Structure
 
-1. Make sure the development server is running (`npm start`)
-2. In a new terminal, you can run Cypress in two ways:
+Here’s what the improved code looked like:
 
-   ### Open Cypress Test Runner (Interactive Mode)
-   ```bash
-   npm run cypress:open
-   ```
-   This will open the Cypress Test Runner UI where you can:
-   - Choose your preferred browser
-   - See all test files
-   - Run tests interactively
-   - Watch tests run in real-time
+```js
+/// <reference types="cypress" />
 
-   ### Run Tests in Headless Mode
-   ```bash
-   npm run cypress:run
-   ```
-   This will run all tests in the terminal without opening the UI.
+// cypress/support/commands.js
+Cypress.Commands.add('fillLoginForm', ({ username, password }) => {
+  cy.findByRole('textbox', { name: /username/i }).clear().type(username);
+  cy.findByLabelText(/password/i).clear().type(password);
+});
 
-   ### Run Tests with Dev Server
-   ```bash
-   npm run test:e2e
-   ```
-   This command will:
-   1. Start the development server
-   2. Wait for it to be available
-   3. Run all Cypress tests
-   4. Shut down the server when done
+// cypress/e2e/login.cy.js
+describe('Login component', () => {
+  const credentials = { username: 'Michael', password: 'password' };
 
-## Project Structure
+  beforeEach(() => {
+    cy.visit('/');
+  });
 
-```
-├── src/
-│   ├── components/
-│   │   ├── LoginForm.js
-│   │   ├── LoginForm.css
-│   │   ├── Welcome.js
-│   │   └── Welcome.css
-│   ├── App.js
-│   └── App.css
-├── cypress/
-│   ├── e2e/
-│   │   └── login.cy.js
-│   └── support/
-│       ├── commands.js
-│       └── e2e.js
-└── package.json
-```
+  context('Initial render', () => {
+    it('shows username & password inputs and a disabled submit button', () => {
+      cy.findByRole('textbox',  { name: /username/i }).should('be.visible');
+      cy.findByLabelText(/password/i).should('be.visible');
+      cy.findByRole('button',   { name: /sign in/i }).should('be.disabled');
+    });
+  });
 
-## Available Scripts
+  context('Form validation', () => {
+    it('enables the submit button only after both fields are filled', () => {
+      cy.findByRole('button', { name: /sign in/i }).as('submit');
 
-- `npm start` - Runs the app in development mode
-- `npm test` - Runs the React testing suite
-- `npm run build` - Builds the app for production
-- `npm run cypress:open` - Opens Cypress Test Runner
-- `npm run cypress:run` - Runs Cypress tests in headless mode
-- `npm run test:e2e` - Runs Cypress tests with the dev server
+      cy.get('@submit').should('be.disabled');
+      cy.findByRole('textbox', { name: /username/i }).type(credentials.username);
+      cy.get('@submit').should('be.disabled');
+      cy.findByLabelText(/password/i).type(credentials.password);
+      cy.get('@submit').should('be.enabled');
+    });
+  });
 
-## License
-
-This project is for testing purposes only and is not licensed for public use.
+  context('Successful submission', () => {
+    it('logs the user in and shows the welcome message', () => {
+      cy.fillLoginForm(credentials);
+      cy.findByRole('button', { name: /sign in/i }).click();
+      cy.contains(`Welcome, ${credentials.username}!`).should('be.visible');
+    });
+  });
+});

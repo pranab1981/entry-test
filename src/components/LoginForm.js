@@ -15,9 +15,16 @@ function LoginForm({ onLogin }) {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(formData)
+  }
+  
+  const isDisabled = formData.name == "" || formData.password == "";
+
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form onSubmit={(e) => {handleSubmit(e)}} className="login-form">
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -41,7 +48,7 @@ function LoginForm({ onLogin }) {
             required
           />
         </div>
-        <button type="submit" className="login-button">
+        <button type="submit" disabled={isDisabled} className="login-button">
           Login
         </button>
       </form>

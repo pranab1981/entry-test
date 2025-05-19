@@ -52,8 +52,8 @@ npm run cypress:run     # Runs tests in headless mode
 npm run test:e2e        # Runs tests with dev server
 ```
 
-### Test Results
-![Cypress Test Results](media/Screenshot%202025-05-19%20204045.png)
+### Test Implementation
+![Cypress Test Implementation](media/Screenshot%202025-05-19%20204045.png)
 
 The video below shows the Cypress tests in action:
 

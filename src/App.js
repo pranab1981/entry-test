@@ -8,6 +8,9 @@ function App() {
   const [userName, setUserName] = useState('');
 
   const handleLogin = (formData) => {
+    // log formData to the console
+    console.log('Form Data:', formData);
+    
     // In a real app, you would validate credentials here
     setIsLoggedIn(true);
     setUserName(formData.name);

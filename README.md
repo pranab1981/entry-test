@@ -18,17 +18,23 @@ To run this project locally, you need to have the following installed:
 
 1. Fork this repository to your own account
 2. Clone your forked repository:
+
    ```bash
    git clone <your-forked-repo-url>
    ```
+
 3. Install dependencies:
+
    ```bash
    npm install
    ```
+
 4. Start the development server:
+
    ```bash
    npm start
    ```
+
    The application will be available at [http://localhost:3000](http://localhost:3000)
 
 ## Testing with Cypress
@@ -39,9 +45,11 @@ This project uses Cypress for end-to-end testing. To run the tests:
 2. In a new terminal, you can run Cypress in two ways:
 
    ### Open Cypress Test Runner (Interactive Mode)
+
    ```bash
    npm run cypress:open
    ```
+
    This will open the Cypress Test Runner UI where you can:
    - Choose your preferred browser
    - See all test files
@@ -49,15 +57,19 @@ This project uses Cypress for end-to-end testing. To run the tests:
    - Watch tests run in real-time
 
    ### Run Tests in Headless Mode
+
    ```bash
    npm run cypress:run
    ```
+
    This will run all tests in the terminal without opening the UI.
 
    ### Run Tests with Dev Server
+
    ```bash
    npm run test:e2e
    ```
+
    This command will:
    1. Start the development server
    2. Wait for it to be available

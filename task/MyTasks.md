@@ -2,11 +2,15 @@
 
 - So I noticed the function for submitting the form was not being called as a parameter for the form's onSubmit event. I added the function to the onSubmit event and it worked.
 
-- I also did some refactoring to make the code cleaner and more readable. I added a function to handle the form submission and another function to handle the input change. This way, the code is more modular and easier to maintain.
+- I also did some refactoring to make the code cleaner and more readable. I added a function to handle the form submission in a way that is more modular and easier to maintain.
 
 - I also added some comments to the code to explain what each part does. This will help anyone who reads the code in the future to understand it better.
 
-- Additionally, I used Github Copilot Agent Mode (Set to GTP-4o) to help me with the refactoring and to suggest some improvements to the code. It was really helpful in suggesting some best practices and making the code more efficient and also identifying some bugs in the code and fixing them. Below is the prompt I used to get the suggestions:
+- I wrote tests to check if the form submission works as expected. I used Cypress to write the tests and I made sure to cover all the edge cases.
+
+## Usage of AI tools in the project
+
+Additionally, I used Github Copilot Agent Mode (Set to GTP-4o) to help me with the refactoring and to suggest some improvements to the code. It was really helpful in suggesting some best practices and making the code more efficient and also identifying some bugs in the code and fixing them. Below is the prompt I used to get the suggestions:
 
 ```text
 look through this codebase and suggest for me instances where the bugs could be in the project and then also make the form submit and work according to the existing logic, also look into my existing test file in the cypress folder and suggest possible changes in how it can be better at testing the whole form submission processs so that the login works as expected, so far I have edited it to allow submission but the challenge is that the form is never submitted and that this data is not recived by the Welcome component, so make necessary adjustments for everything to be in the right order as required
@@ -14,8 +18,6 @@ look through this codebase and suggest for me instances where the bugs could be 
 
 **Images for the prompt**
   ![Screenshot 2025-05-19 at 4.59.51 PM](./images/Screenshot%202025-05-19%20at%204.59.51 PM.png)
-
-## Usage of AI tools in the project
 
 - **Github Copilot in VS Code**: I used Github Copilot to help me with the refactoring and to suggest some improvements to the code. It was really helpful in suggesting some best practices and making the code more efficient.
 

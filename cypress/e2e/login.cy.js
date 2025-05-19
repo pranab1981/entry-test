@@ -1,5 +1,6 @@
 describe('Login Component', () => {
-    it('logs in successfully',() => {
+    //changed this from "Logs in Succesfully" to add some light hearted humor hehe.
+    it("I'm getting the job lesgoo",() => {
         cy.visit('http://localhost:3000/login')
         cy.get('input[name="name"]')//get the name input field
         cy.get('input[name="password"]')//get the password input field

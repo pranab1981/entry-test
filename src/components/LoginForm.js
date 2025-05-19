@@ -31,7 +31,8 @@ function LoginForm({ onLogin }) {
     <div className="login-form-container">
 
       {/* Got the approach from chatGPT on how basic form submissions are handled*/}
-      <form className="login-form">
+      {/* The form is supposed to be submitted, not the button. MAJOR red flag here. */}
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -56,7 +57,7 @@ function LoginForm({ onLogin }) {
             required
           />
         </div>
-        <button type="submit" className="login-button" onSubmit={handleSubmit}>{/* no action when clicked??? How is the form submitted then?*/}
+        <button type="submit" className="login-button">{/* no action when clicked??? How is the form submitted then?*/}
           Login
         </button>
       </form>

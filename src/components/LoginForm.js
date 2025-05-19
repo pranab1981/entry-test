@@ -20,6 +20,12 @@ function LoginForm({ onLogin }) {
       [name]: value
     }));
   };
+  //finally caling onLogin through the button. This SHOULD make the Login page talk to the App page. The button also has a function now.
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    onLogin(formData);
+  };
+
 
   return (
     <div className="login-form-container">
@@ -50,7 +56,7 @@ function LoginForm({ onLogin }) {
             required
           />
         </div>
-        <button type="submit" className="login-button">{/* no action when clicked??? How is the form submitted then?*/}
+        <button type="submit" className="login-button" onSubmit={handleSubmit}>{/* no action when clicked??? How is the form submitted then?*/}
           Login
         </button>
       </form>

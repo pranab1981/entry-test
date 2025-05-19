@@ -10,12 +10,12 @@ function App() {
   const handleLogin = (formData) => {
     // In a real app, you would validate credentials here
     setIsLoggedIn(true);
-    setUserName(formData.name);
+    setUserName(formData.name);//this wont be called since onLogin is never called in the first place
   };
 
   const handleLogout = () => {
     setIsLoggedIn(false);
-    setUserName('');
+    setUserName(''); //nothing to change or worry about here
   };
 
   return (

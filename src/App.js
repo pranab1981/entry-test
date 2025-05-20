@@ -9,8 +9,13 @@ function App() {
 
   const handleLogin = (formData) => {
     // In a real app, you would validate credentials here
-    setIsLoggedIn(true);
-    setUserName(formData.name);
+    if (formData.name === 'suleiman' && formData.password === 'suleimanpassword'){
+      setIsLoggedIn(true);
+      setUserName(formData.name);
+    } else {
+      alert('You have provided invalid credentials')
+    }
+   
   };
 
   const handleLogout = () => {

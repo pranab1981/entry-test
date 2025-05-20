@@ -34,4 +34,12 @@ describe('Login Component', () => {
 
       });
 
+    it('shows error or blocks login with invalid credentials', () => {
+        cy.get('input[name="name"]').type('wronguser');
+        cy.get('input[name="password"]').type('wrongpass');
+        cy.get('button[type="submit"]').click();
+      
+        cy.contains('Welcome').should('not.exist');
+    });
+
 }) 

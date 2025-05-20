@@ -96,3 +96,34 @@ This project uses Cypress for end-to-end testing. To run the tests:
 ## License
 
 This project is for testing purposes only and is not licensed for public use.
+
+---
+
+### 🐛 Bug Fix Explanation
+
+The original issue in the app was that **logging in did not redirect the user to the welcome page**.  
+This occurred because the login logic didn’t properly trigger the redirect using React Router.
+
+#### ✅ Fix:
+- I created a wrapper `LoginPage` component using `useNavigate()` from `react-router-dom`.
+- Inside the login handler, after updating login state, I added `navigate('/welcome')` to redirect the user upon successful login.
+
+This ensured the login flow completes and navigates to the welcome screen.
+
+---
+
+### ✅ Cypress Tests Summary
+
+I wrote a Cypress test (`cypress/e2e/login.cy.js`) that performs the following:
+
+1. Opens the login page
+2. Enters a username and password
+3. Submits the login form
+4. Asserts that the user is redirected to `/welcome`
+5. Checks that the personalized welcome message appears
+
+All test cases pass successfully, confirming that the login functionality and redirection work as expected.
+
+
+
+

@@ -17,7 +17,7 @@ function LoginForm({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // prevent page reload
-    // You can add validation here if needed
+   
     onLogin(formData); // pass login data to parent
   };
 

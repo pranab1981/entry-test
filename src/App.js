@@ -34,6 +34,7 @@ function App() {
   Solution: Added proper submission handling to the <form> in <LoginForm/>, while also ensuring onLogin, the main connecting function, is called.
 
   References: Google Chrome DevTools, Gemini enabled debugging, and ChatGPT.
+  link: https://chatgpt.com/share/682bfd97-e688-8007-b54b-374a00786976
   */
   return (
     

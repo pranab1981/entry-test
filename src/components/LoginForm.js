@@ -16,9 +16,9 @@ function LoginForm({ onLogin }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // preventing  page reload
+    e.preventDefault(); // preventing ing page reload
     
-    onLogin(formData); // passing the  login data to parent
+    onLogin(formData); // passing the ing the login data to parent
   };
 
   return (

@@ -16,6 +16,10 @@ To write the Cypress test, I started by visiting the baseURL which was preconfig
 
 I also created a custom command that shortens getting the data-test element and reduces repetitive code.
 
+Below is a screenshot of the completed and successful test:
+
+![test](test.png)
+
 ## Example of AI tools used
 
 One interesting problem I faced during creating the test was that while the page redirected manually, it didn't redirect during the Cypress test. I explained my problem to ChatGPT and pasted in only the code I wrote. Below is the prompt and snippet of the response that solved my problem:

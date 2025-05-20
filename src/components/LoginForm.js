@@ -15,9 +15,15 @@ function LoginForm({ onLogin }) {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault(); // prevent page reload
+    // You can add validation here if needed
+    onLogin(formData); // pass login data to parent
+  };
+
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -49,4 +55,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm; 
+export default LoginForm;

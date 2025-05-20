@@ -25,7 +25,7 @@ function App() {
             )
           }
         />
-        {/* Redirect any unknown route to login */}
+        {/* Redirecting  any unknown route to login */}
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     </Router>

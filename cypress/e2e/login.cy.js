@@ -22,4 +22,16 @@ describe('Login Component', () => {
 
     });
 
+    it('logs in successfully with valid credentials and redirects', () => {
+        cy.visit('/');
+      
+        cy.get('input[name="name"]').type('suleiman');
+        cy.get('input[name="password"]').type('suleimanpassword');
+        cy.get('button[type="submit"]').click();
+      
+        cy.contains('Welcome, suleiman!').should('exist');
+
+
+      });
+
 }) 

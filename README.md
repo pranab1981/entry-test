@@ -84,6 +84,27 @@ This project uses Cypress for end-to-end testing. To run the tests:
 └── package.json
 ```
 
+## Bug Fix Explanation
+
+The login form wasn't properly handling form submission events. The form had a submit button but was missing the `onSubmit` handler to process the form data and call the `onLogin` prop. This was fixed by adding a `handleSubmit` function that prevents the default form submission and calls `onLogin` with the form data, along with adding the `onSubmit` handler to the form element.
+
+## Cypress Test Cases
+
+The following test cases have been implemented to verify the login functionality:
+
+1. **Login Form Display**
+   - Verifies that the login form is visible
+   - Checks for the presence of name input, password input, and submit button
+
+2. **Successful Login and Redirect**
+   - Tests the complete login flow with valid credentials
+   - Verifies redirection to the welcome page
+   - Confirms the welcome message displays the correct username
+
+3. **Logout Functionality**
+   - Verifies that the logout button is visible after login
+   - Ensures proper UI state after successful login
+
 ## Available Scripts
 
 - `npm start` - Runs the app in development mode

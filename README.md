@@ -96,3 +96,33 @@ This project uses Cypress for end-to-end testing. To run the tests:
 ## License
 
 This project is for testing purposes only and is not licensed for public use.
+
+---
+
+## Developer Notes
+
+**Name**: Eman Abdeen  
+**Challenge**: Junior Developer Challenge - Login Redirect Fix
+
+### Changes Implemented:
+1. **LoginForm.js**:
+   ```javascript
+   // Added form submission handler
+   const handleSubmit = (e) => {
+     e.preventDefault();
+     if (onLogin) onLogin(formData);
+     navigate('/welcome');
+   };
+   ```
+
+2. **App.js**:
+   ```javascript
+   // Wrapped app with Router
+   <Router>
+     <Routes>
+       {/* ... routes ... */}
+     </Routes>
+   </Router>
+   ```
+
+**Testing**: All Cypress tests now pass (redirect verification)

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
 function LoginForm({ onLogin }) {
@@ -6,6 +7,8 @@ function LoginForm({ onLogin }) {
     name: '',
     password: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,9 +18,15 @@ function LoginForm({ onLogin }) {
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (onLogin) onLogin(formData);
+    navigate('/welcome');  // Redirect to welcome page
+  };
+
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>

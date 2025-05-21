@@ -1,32 +1,46 @@
-import React, { useState } from 'react';
-import './App.css';
-import LoginForm from './components/LoginForm';
-import Welcome from './components/Welcome';
+import React from "react";
+import "./App.css";
+import LoginForm from "./components/LoginForm";
+import Welcome from "./components/Welcome";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState('');
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginWrapper />} />
+        <Route path="/welcome" element={<WelcomeWrapper />} />
+      </Routes>
+    </Router>
+  );
+}
+
+function LoginWrapper() {
+  const navigate = useNavigate();
 
   const handleLogin = (formData) => {
-    // In a real app, you would validate credentials here
-    setIsLoggedIn(true);
-    setUserName(formData.name);
+    // Simulate login
+    navigate("/welcome", { state: { userName: formData.name } });
   };
+
+  return <LoginForm onLogin={handleLogin} />;
+}
+
+function WelcomeWrapper() {
+  const location = useLocation();
+  const userName = location.state?.userName || "User";
 
   const handleLogout = () => {
-    setIsLoggedIn(false);
-    setUserName('');
+    window.location.href = "/";
   };
 
-  return (
-    <div className="App">
-      {isLoggedIn ? (
-        <Welcome userName={userName} onLogout={handleLogout} />
-      ) : (
-        <LoginForm onLogin={handleLogin} />
-      )}
-    </div>
-  );
+  return <Welcome userName={userName} onLogout={handleLogout} />;
 }
 
 export default App;

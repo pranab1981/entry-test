@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@testing-library/cypress": "^10.0.3",
+    "@types/react": "^19.1.4",
     "cypress": "^14.3.3",
     "start-server-and-test": "^2.0.12"
   }

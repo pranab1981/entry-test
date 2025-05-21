@@ -9,15 +9,23 @@ function LoginForm({ onLogin }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }));
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Ensure onLogin exists before calling
+    if (typeof onLogin === 'function') {
+      onLogin(formData);  // Pass form data to callback
+    }
+  };
+
   return (
-    <div className="login-form-container">
-      <form className="login-form">
+    <div className="login-form-container" data-testid="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -28,6 +36,7 @@ function LoginForm({ onLogin }) {
             value={formData.name}
             onChange={handleChange}
             required
+            data-testid="name-input"
           />
         </div>
         <div className="form-group">
@@ -39,9 +48,14 @@ function LoginForm({ onLogin }) {
             value={formData.password}
             onChange={handleChange}
             required
+            data-testid="password-input"
           />
         </div>
-        <button type="submit" className="login-button">
+        <button 
+          type="submit" 
+          className="login-button"
+          data-testid="submit-button"
+        >
           Login
         </button>
       </form>
@@ -49,4 +63,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm; 
+export default LoginForm;

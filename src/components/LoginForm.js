@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
-import './LoginForm.css';
+import React, { useState } from "react";
+import "./LoginForm.css";
 
 function LoginForm({ onLogin }) {
   const [formData, setFormData] = useState({
-    name: '',
-    password: ''
+    name: "",
+    password: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
+  };
+
+  //PROBLEM: The onLogin function is never triggered because the form has no onSubmit handler
+  //SOLUTION: Added an onSubmit handler to the form that calls the onLogin function with the form data
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // In a real app, you would validate credentials here
+    onLogin(formData);
   };
 
   return (
     <div className="login-form-container">
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleSubmit}>
         <h2>Login</h2>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
@@ -49,4 +57,4 @@ function LoginForm({ onLogin }) {
   );
 }
 
-export default LoginForm; 
+export default LoginForm;

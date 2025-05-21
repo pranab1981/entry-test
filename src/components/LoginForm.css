@@ -32,6 +32,7 @@
 }
 
 .form-group input {
+  box-sizing: border-box;
   width: 100%;
   padding: 0.75rem;
   border: 1px solid #ddd;
@@ -64,4 +65,4 @@
 .login-button:focus {
   outline: none;
   box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.2);
-} 
+}
